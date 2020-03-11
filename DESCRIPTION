@@ -1,0 +1,20 @@
+Package: deeper
+Type: Package
+Title: Deep Ensemble for Environmental Predictor
+Version: 0.1.0
+Author: Wenhua Yu, Yuming Guo
+Maintainer: Wenhua Yu <alven.yu@monash.edu>
+Description: Give some machine learning methods to obtain the ensemble models automatically.
+    it can be uesed to stack the ensemble models again with multi machine learning methods
+License: GPL-2
+Encoding: UTF-8
+LazyData: true
+Depends:
+    R (>= 3.5.0),
+    SuperLearner
+Suggests:
+    caret (>= 6.0-82),
+    ggplot2 (>= 3.2.1),
+    stats (>= 3.5.3),
+    utils
+RoxygenNote: 7.0.2
