@@ -41,7 +41,7 @@ The other function CV.predictModel() is referred from SuperLearner to get more d
 
 # Example
 
-### Seperate the dataset to training and testing dataset
+### Separate the dataset to training and testing dataset
 
 ```{r data reading, include=FALSE}
 set.seed(1234)
@@ -71,7 +71,7 @@ data(model_list) # get more details about the algorithm
 
 ## Step0: tuning the paramaters of a single model
 ```{r}
-#method 1: using the Envirpred package function
+#method 1: using deeper package function
 ranger <- tuningModel(basemodel  = 'SL.ranger',params = list(num.trees=100),tune = list(mtry = c(1,3,7)))
 
 #method 2: employ the Superlearner package "create.Learner" method 

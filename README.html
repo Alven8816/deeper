@@ -437,7 +437,7 @@ data(model_list) # get more details about the algorithm
 <h1>Model Building</h1>
 <div id="step0-tuning-the-paramaters-of-a-single-model" class="section level2">
 <h2>Step0: tuning the paramaters of a single model</h2>
-<pre class="{r}"><code>#method 1: using the Envirpred package function
+<pre class="{r}"><code>#method 1: using deeper package function
 ranger &lt;- tuningModel(basemodel  = &#39;SL.ranger&#39;,params = list(num.trees=100),tune = list(mtry = c(1,3,7)))
 
 #method 2: employ the Superlearner package &quot;create.Learner&quot; method 
