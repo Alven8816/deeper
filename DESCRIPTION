@@ -1,0 +1,21 @@
+Package: deeper
+Type: Package
+Title: Deep Ensemble for Environmental Predictor
+Version: 1.0.0
+Author: Wenhua Yu, Yuming Guo
+Maintainer: Wenhua Yu <alven.yu@monash.edu>
+Description: The package provides a multiple-level stacked ensemble machine learning framework 
+    for improving the estimation of the air pollution concentrations.It can be viewed as 
+    an extension of package SuperLearner, but achieve an improving prediction accuracy.
+License: GPL (>= 3)
+Encoding: UTF-8
+LazyData: true
+Depends:
+    R (>= 3.5.0),
+    SuperLearner(>= 2.0-28)
+Suggests:
+    caret (>= 6.0-82),
+    ggplot2 (>= 3.2.1),
+    stats (>= 3.5.3),
+    utils
+RoxygenNote: 7.1.1
