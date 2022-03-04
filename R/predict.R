@@ -20,7 +20,7 @@ predict <- function(object,
       ...
     )
     out <- list(
-      pre_meta = pre
+      pre_base = pre
     )
     return(out)
   } else {
