@@ -43,6 +43,10 @@ Alven Yu
     -   [Citation](#citation)
 
 <!-- badges: start -->
+
+[![Codecov test
+coverage](https://codecov.io/gh/Alven8816/deeper_1.0.0/branch/master/graph/badge.svg)](https://codecov.io/gh/Alven8816/deeper_1.0.0?branch=master)
+[![R-CMD-check](https://github.com/Alven8816/deeper_1.0.0/workflows/R-CMD-check/badge.svg)](https://github.com/Alven8816/deeper_1.0.0/actions)
 <!-- badges: end -->
 
 ## The framework of DEML model
