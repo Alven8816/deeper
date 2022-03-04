@@ -2,9 +2,10 @@ Package: deeper
 Type: Package
 Title: Deep Ensemble for Environmental Predictor
 Version: 1.0.0
-Author: Wenhua Yu, Yuming Guo
-Maintainer: Wenhua Yu <alven.yu@monash.edu>
-Description: The package provides a multiple-level stacked ensemble machine learning framework 
+Authors@R: c(person("Wenhua", "Yu", email = "wenhua.yu@monash.edu", role = c("aut", "cre")),
+            person("Yuming", "Guo", role = c("aut")))
+Maintainer: Wenhua Yu <wenhua.yu@monash.edu>
+Description: The package provides a multiple-level stacked ensemble machine learning (DEML) framework 
     for improving the estimation of the air pollution concentrations.It can be viewed as 
     an extension of package SuperLearner, but achieve an improving prediction accuracy.
 License: GPL (>= 3)
@@ -15,7 +16,11 @@ Depends:
     SuperLearner(>= 2.0-28)
 Suggests:
     caret (>= 6.0-82),
+    testthat (>= 3.0.0),
     ggplot2 (>= 3.2.1),
     stats (>= 3.5.3),
     utils
 RoxygenNote: 7.1.1
+Config/testthat/edition: 3
+URL: https://github.com/Alven8816/deeper
+BugReports: https://github.com/Alven8816/deeper/issues
