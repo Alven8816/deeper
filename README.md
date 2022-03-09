@@ -55,7 +55,7 @@ The goal of deeper is to develop a multiple-level deep ensemble machine
 learning framework (DEML) for improving the estimation of air pollution
 concentrations.
 
-[framework](%22https://ehp.niehs.nih.gov/cms/asset/f6469ec0-3082-4a78-acb9-a95c988e73db/ehp9752_f1.gif%22)
+![framework](./demlfigurev3.png)
 
 The DEML framework proposed in this study is a three-level stacked
 ensemble approach. It is based on the SuperLearner(SL) ensemble
