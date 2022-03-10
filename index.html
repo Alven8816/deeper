@@ -177,11 +177,17 @@
 
 <span class="co">## obtain the example data</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"envir_example"</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">1234</span><span class="op">)</span>
+<span class="va">size</span> <span class="op">&lt;-</span>
+  <span class="fu">caret</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/caret/man/createDataPartition.html" class="external-link">createDataPartition</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">envir_example</span><span class="op">$</span><span class="va">PM2.5</span>, p <span class="op">=</span> <span class="fl">0.8</span>, list <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
+<span class="va">trainset</span> <span class="op">&lt;-</span> <span class="va">envir_example</span><span class="op">[</span><span class="va">size</span>, <span class="op">]</span>
+<span class="va">testset</span> <span class="op">&lt;-</span> <span class="va">envir_example</span><span class="op">[</span><span class="op">-</span><span class="va">size</span>, <span class="op">]</span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="identify-the-dependence-and-independence-variables">Identify the dependence and independence variables<a class="anchor" aria-label="anchor" href="#identify-the-dependence-and-independence-variables"></a>
 </h3>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"PM2.5"</span><span class="op">)</span>
 <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">envir_example</span><span class="op">[</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">6</span><span class="op">)</span><span class="op">]</span><span class="op">)</span> <span class="co"># except "date" and "PM2.5"</span></code></pre></div>
 </div>
@@ -189,7 +195,7 @@
 <div class="section level2">
 <h2 id="2the-models-can-be-used">2.The models can be used<a class="anchor" aria-label="anchor" href="#2the-models-can-be-used"></a>
 </h2>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># we need to select the algorithm previously</span>
 <span class="fu">SuperLearner</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SuperLearner/man/listWrappers.html" class="external-link">listWrappers</a></span><span class="op">(</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">model_list</span><span class="op">)</span> <span class="co"># get more details about the algorithm</span></code></pre></div>
@@ -202,7 +208,7 @@
 <div class="section level2">
 <h2 id="31-tuning-the-paramaters-of-a-base-model">3.1 Tuning the paramaters of a base model<a class="anchor" aria-label="anchor" href="#31-tuning-the-paramaters-of-a-base-model"></a>
 </h2>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">#method 1: using deeper package function</span>
 <span class="va">ranger</span> <span class="op">&lt;-</span>
   <span class="fu"><a href="reference/tuningModel.html">tuningModel</a></span><span class="op">(</span>
@@ -223,7 +229,7 @@
 <div class="section level3">
 <h3 id="321-training-the-base-ensemble-model">3.2.1 Training the (base) ensemble model<a class="anchor" aria-label="anchor" href="#321-training-the-base-ensemble-model"></a>
 </h3>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">#training the model with new dataset</span>
 <span class="co">#predict the model with several methods(here we choose XGBoost and Random Forest models)</span>
 
@@ -243,7 +249,7 @@
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">pred_m1</span><span class="op">$</span><span class="va">single_pre</span><span class="op">)</span></code></pre></div>
 <p>The results show the weight, R2, and the root-mean-square error (RMSE) of each model. “ranger_1”,“ranger_2”,“ranger_3” note the Random Forest model with parameters mtry = 1,3,7 separately.</p>
 <p>The results show that mtry = 5 is the best RF model for this prediction.This method could be used to tune the suitable parameters for algorithms.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># training the model with separate new data set</span>
 
 <span class="va">pred_m2</span> <span class="op">&lt;-</span>
@@ -260,7 +266,7 @@
 <div class="section level3">
 <h3 id="322-training-the-base-ensemble-model-with-parallel-computing">3.2.2 Training the (base) ensemble model with parallel computing<a class="anchor" aria-label="anchor" href="#322-training-the-base-ensemble-model-with-parallel-computing"></a>
 </h3>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## conduct the spatial CV</span>
 
 <span class="co"># Create a list with 7 (folds) elements (each element contains index of rows to be considered on each fold)</span>
@@ -307,7 +313,7 @@
 <div class="section level3">
 <h3 id="331-stacked-meta-models-based-on-trained-base-models">3.3.1 Stacked meta models based on trained base models<a class="anchor" aria-label="anchor" href="#331-stacked-meta-models-based-on-trained-base-models"></a>
 </h3>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">#Do not include original feature</span>
 <span class="co"># object include newX dataset</span>
 <span class="va">pre_stack_1</span> <span class="op">&lt;-</span>
@@ -359,7 +365,7 @@
 <div class="section level3">
 <h3 id="332-stacked-meta-models-from-scratch">3.3.2 Stacked meta models from scratch<a class="anchor" aria-label="anchor" href="#332-stacked-meta-models-from-scratch"></a>
 </h3>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">#Do not include original feature</span>
 <span class="co"># put new dataset in the training</span>
 <span class="va">pred_stack_5</span> <span class="op">&lt;-</span>
@@ -416,7 +422,7 @@
 <div class="section level3">
 <h3 id="333-stacked-meta-models-with-paralleling-computing">3.3.3 Stacked meta models with paralleling computing<a class="anchor" aria-label="anchor" href="#333-stacked-meta-models-with-paralleling-computing"></a>
 </h3>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">#Do not include original feature</span>
 <span class="va">pred_stack_9</span> <span class="op">&lt;-</span>
   <span class="fu"><a href="reference/stack_ensemble_parallel.html">stack_ensemble_parallel</a></span><span class="op">(</span>
@@ -452,7 +458,7 @@
 <div class="section level3">
 <h3 id="41-cross-validation-with-base-models">4.1 Cross validation with base models<a class="anchor" aria-label="anchor" href="#41-cross-validation-with-base-models"></a>
 </h3>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">pred_m1_cv</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/CV.predictModel_parallel.html">CV.predictModel_parallel</a></span><span class="op">(</span>
   Y <span class="op">=</span> <span class="va">trainset</span><span class="op">[</span>, <span class="va">y</span><span class="op">]</span>,
   X <span class="op">=</span> <span class="va">trainset</span><span class="op">[</span>, <span class="va">x</span><span class="op">]</span>,
@@ -463,7 +469,7 @@
 <div class="section level3">
 <h3 id="42-cross-validation-with-stacked-meta-models">4.2 Cross validation with stacked meta models<a class="anchor" aria-label="anchor" href="#42-cross-validation-with-stacked-meta-models"></a>
 </h3>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">#Include original feature</span>
 <span class="va">pred_stack_cv_1</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/CV.stack_ensemble_parallel.html">CV.stack_ensemble_parallel</a></span><span class="op">(</span>
   object <span class="op">=</span> <span class="va">pred_m2</span>,
@@ -489,7 +495,7 @@
 <div class="section level2">
 <h2 id="5-assess-and-plot-the-results">5. Assess and plot the results<a class="anchor" aria-label="anchor" href="#5-assess-and-plot-the-results"></a>
 </h2>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">test_p</span> <span class="op">&lt;-</span>
   <span class="fu"><a href="reference/assess.plot.html">assess.plot</a></span><span class="op">(</span>pre <span class="op">=</span> <span class="va">pred_stack_10_new</span><span class="op">$</span><span class="va">pre_meta</span><span class="op">$</span><span class="va">pred</span>, obs <span class="op">=</span> <span class="va">testset</span><span class="op">[</span>, <span class="va">y</span><span class="op">]</span><span class="op">)</span>
 
