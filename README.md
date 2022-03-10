@@ -126,6 +126,14 @@ library(deeper)
 data("envir_example")
 ```
 
+``` r
+set.seed(1234)
+size <-
+  caret::createDataPartition(y = envir_example$PM2.5, p = 0.8, list = FALSE)
+trainset <- envir_example[size, ]
+testset <- envir_example[-size, ]
+```
+
 ### Identify the dependence and independence variables
 
 ``` r
