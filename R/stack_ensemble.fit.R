@@ -27,7 +27,6 @@
 #' ensemble_pre (the ensemble model predict value) when set newX;
 #' stack_ensemble_pred (the double stack ensemble model predict value) when set newX;
 #' the DEML model assessment(R-squire and RMSE)
-#' @examples
 #' @export
 stack_ensemble.fit <- function(Y,
                                X,

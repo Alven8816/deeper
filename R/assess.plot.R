@@ -116,9 +116,8 @@ assess.plot <- function(obs, pre, quantile = c(0.05, 0.95), ...) {
       ggplot2::theme_classic() +
       ggplot2::theme(legend.position = "none", ...)
   }
-  print(p1)
   out <- list(
-    formula = formula,
+    #formula = formula,
     R2 = r2,
     RMSE = rmse,
     plot = p1
