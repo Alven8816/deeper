@@ -10,7 +10,6 @@ Description: The package provides a multiple-level stacked ensemble machine lear
     an extension of package SuperLearner, but achieve an improving prediction accuracy.
 License: GPL (>= 3)
 Encoding: UTF-8
-LazyData: true
 Depends:
     R (>= 3.5.0),
     SuperLearner(>= 2.0-28)
